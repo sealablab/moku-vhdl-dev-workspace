@@ -1,0 +1,10 @@
+[project]
+name = "moku-vhdl-dev-workspace"
+version = "0.1.0"
+description = "get your own moku vhdl developer workspace setup quick and easy"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "moku>=3.3.3",
+    "zeroconf>=0.147.0",
+]
