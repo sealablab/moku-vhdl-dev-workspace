@@ -33,5 +33,18 @@ __Note__: Limit this repo to VHDL for now. Smaller context window. Simpler curso
 │   ./Blinkers/
 ```
 
+## 4) [Moku-bsl](https://github.com/sealablab/moku-bsl)
+#### Dependencies: `pydantic-moku-models`
+**moku-bsl** loads bitstreams (usually in multi-instrument mode) onto a moku device over the network.
+> [!NOTE]  You will need to ByOB (bring your own bitstream)
+
+``` shell
+./moku-bsl/
+./moku-bsl/__init__.py
+./moku-bsl/cli.py
+./moku-bsl/device.py
+```
+**moku-bsl** is based on my previous worth with the [moku-go](https://github.com/sealablab/Moku-Go) module
+
 
 
