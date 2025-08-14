@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,vim,git
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,vim,git
 
+
+## uv 
+uv.lock
+.python-version
 ### Git ###
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false
