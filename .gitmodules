@@ -4,3 +4,6 @@
 [submodule "moku-dev-vhdl"]
 	path = moku-dev-vhdl
 	url = https://github.com/sealablab/moku-dev-vhdl
+[submodule "moku-bsl"]
+	path = moku-bsl
+	url = https://github.com/sealablab/moku-bsl.git
