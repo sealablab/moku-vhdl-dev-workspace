@@ -15,6 +15,21 @@ This allows you to keep the context window tight, and focus cursor on language s
 
 # Submodules
 
+All submodules are configured to track their `main` branch by default. When updating submodules, they will automatically use the latest main branch.
+
+## Quick Submodule Updates
+
+To update all submodules to their latest main branch:
+
+```bash
+# Option 1: Use the convenience script
+./scripts/update-submodules.sh
+
+# Option 2: Manual update
+git submodule update --remote --merge
+git submodule foreach 'git checkout main && git pull origin main'
+```
+
 ## [pydantic-moku-models](https://github.com/sealablab/pydantic-moku-models) 
 **02-pydantic-moku-models**: All data structures that are exposed for consumption to other services can and should have a clearly defined pydantic model. For example
 ``` python
