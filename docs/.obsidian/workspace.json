@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "4dba99042cb4c152",
+        "id": "e84ad98dd524a93f",
         "type": "tabs",
         "children": [
           {
-            "id": "c7ca0a0ee499d56f",
+            "id": "54bb4707e886194b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "S2-ProbeDriver/S2-ProbeDriver-spec.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "S2-ProbeDriver-spec"
+              "title": "New tab"
             }
           }
         ]
@@ -78,8 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "f540a684779518ee",
@@ -95,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "S2-ProbeDriver/S2-ProbeDriver-spec.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for S2-ProbeDriver-spec"
+              "title": "Backlinks"
             }
           },
           {
@@ -114,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "S2-ProbeDriver/S2-ProbeDriver-spec.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from S2-ProbeDriver-spec"
+              "title": "Outgoing links"
             }
           },
           {
@@ -143,13 +136,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "S2-ProbeDriver/S2-ProbeDriver-spec.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of S2-ProbeDriver-spec"
+              "title": "Outline"
             }
           }
         ],
@@ -169,15 +161,30 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c7ca0a0ee499d56f",
+  "active": "54bb4707e886194b",
   "lastOpenFiles": [
+    "Probes/Riscure-DS1203A HP EM SCA Probe.md",
+    "S2-ProbeDriver/S2-ProbeDriver.md",
+    "S2-ProbeDriver/S2-DS1120A-ProbeDriver.md",
+    "Probes/pdfs/DS1120A Unidirectional Fault Injection Probe.pdf",
+    "Probes/pdfs/DS1121A Bidirectional Fault Injection Probe.pdf",
+    "Probes/Riscure-DS1120A Uni-directional EM FI probe.md",
+    "Probes/pdfs/DS1121A Bidirectional Fault Injection Prob.pdf",
+    "Probes/pdfs/DS1121A Bidirectional-Fault-Injection-Probe-User-Manual.pdf",
+    "Probes/pdfs",
+    "datasheets/DS1101A Fault Injection Laser System.pdf",
+    "datasheets/DS1120A Unidirectional Fault Injection Probe.md",
+    "Probes/Riscure-DS1120A-Probe.md",
+    "Probes/Riscure-DS1203A HP EM SCA Probe tips.md",
+    "Probes/Riscure-DS1203A HP EM SCA Probe Probe.md",
+    "Probes/Riscure-DS1203A HP EM SCA Probe Amp.md",
+    "Probes/Riscure-DS1121A Bi-Directional EM FI Probe.md",
+    "Probes",
+    "S2-ProbeDriver/S2-ProbeDriver-spec.md",
+    "DS1120ADriver-notes.md",
     "datasheets/Datasheet-MokuGo.pdf",
-    "datasheets/DS1101A Fault Injection Laser System | Keysight.pdf",
-    "datasheets/DS1121A-Bidirectional-Fault-Injection-Probe-User-Manual.pdf",
-    "datasheets/DS1120A Unidirectional Fault Injection Probe : DS1121A Bidirectional Fault Injection Probe | Keysigh.pdf",
     "datasheets",
     "DS1120ADriver-spec.md",
-    "S2-ProbeDriver/S2-ProbeDriver-spec.md",
     "DS1120ADriver.md.md",
     "S1-GloblState"
   ]

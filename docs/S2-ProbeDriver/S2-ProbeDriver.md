@@ -1,9 +1,28 @@
+This note defines the basic ProbeDriver architecture.
 
-# Slot2-ProbeDriver-spec
+It serves as the foundation for the [[S2-DS1120A-ProbeDriver]]
+
 
 The following document describes the shared design of all Slot2-ProbeDrivers. 
 
-## Probe-Inputs:
+## ProbeDriver: Physical-Inputs:
+The bare minimum number of inputs to a ProbeDriver (excluding configuration values passed via controlRegisters) is precisely **one**. 
+
+### Trig-in: 
+
+
+## ProbeDriver: Physical-Outputs:
+The bare minimum number of physical outputs **from** a ProbeDriver (again, excluding status / debugging registers) is also precisely **two**:
+* Trig-out: Literally drives the 
+### Trig-out:
+
+For now, we will treat **trig_out** as a single DIO. 
+
+##
+
+
+
+
 All probe drivers will have the following (syncronous) inputs connected:
 ### `trig_in` 
 **trig_in**: self-explanatory: This will likely be connected to DIO[0], but maybe will be an analog input..🤔

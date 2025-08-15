@@ -1,5 +1,6 @@
 # DS1120A
-The ***DS1120A** has the following specifications
+The ***DS1120A** has the following specifications. Most of the behavior is defined in the [[S2-ProbeDriver]]
+
 # See Also
 [[S2-ProbeDriver-spec]]
 
