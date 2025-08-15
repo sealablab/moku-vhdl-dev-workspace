@@ -9,8 +9,9 @@ git submodule init
 git submodule update --recursive
 ```
 
-# `.cursorrules` 
-The included [.cursorrules]() file is intended to make extensive use of the latest [cursor project rules](https://docs.cursor.com/en/context/rules)
+# [.cursor/rules](https://github.com/sealablab/moku-vhdl-dev-workspace/blob/main/.cursor/rules)
+The `.cursor/rules` file is intended to make extensive use of the latest [cursor project rules](https://docs.cursor.com/en/context/rules). 
+This allows you to keep the context window tight, and focus cursor on language specific goals
 
 # Submodules
 
