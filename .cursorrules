@@ -1,0 +1,70 @@
+# Cursor Rules for moku-vhdl-dev-workspace
+
+These rules apply to the corresponding folders and file types in this repo. They are designed to optimize Cursor's language modeling, suggestion accuracy, and toolchain compatibility.
+
+---
+
+## ./moku-dev-vhdl/
+
+- This folder contains **only** synthesizable **VHDL-2008** source files and documentation in Markdown.
+- Use **GHDL** for simulation and **Vivado 2022.2** for synthesis via **Moku Cloud Compiler (MCC)**.
+- Use `.vhd` file extension only — never `.vhdl`.
+- Do **not** define the `CustomWrapper` entity in any top-level module — MCC provides it.
+- Entity and architecture names should match file names (PascalCase).
+- Ports and signals should use `snake_case`.
+- Inline comments should be used to close control structures (e.g., `-- end if  -- rising_edge(clk)`).
+- Use constants and enumerated types where appropriate instead of magic numbers.
+- No generics should be defined in top-level modules unless explicitly required for synthesis.
+- Top-level modules should always be called `Top.vhd` or `Top.vhdl` if referring to reference modules.
+- Testbenches must print `"ALL TESTS PASSED"` or `"SIMULATION DONE"` to signal success.
+
+---
+
+## ./pydantic-models/
+
+- This directory contains **Python files** using `pydantic` v2 features.
+- Use `BaseModel` from `pydantic` to define structured data types.
+- Always use `model_config = ConfigDict(...)` to control settings instead of decorators or legacy configs.
+- Avoid:
+  - Legacy `Field(..., alias=...)` patterns; prefer `@field_serializer`, `@field_validator` as needed.
+  - `Any` types unless unavoidable.
+- Prefer:
+  - Explicit types (`str`, `int`, `datetime`, etc.) over `Union` or `Optional` unless necessary.
+  - `constr`, `conint`, etc. from `pydantic` for constrained types.
+  - Custom validators only when builtin types won’t suffice.
+- Use `pyproject.toml` and `uv` to manage dependencies — not `requirements.txt`.
+
+---
+
+## ./moku-bsl/
+
+- This folder is a Git submodule containing utility code (likely Python).
+- Do not modify directly — treat as read-only unless explicitly stated.
+
+---
+
+## ./scripts/
+
+- Contains CLI and utility Python scripts.
+- Scripts must be written with portability in mind (POSIX-safe where shell is used).
+- Use `typer` for command-line interface if applicable.
+- Log messages should use `loguru`, not `print()`.
+
+---
+
+## Root-Level Python Files (e.g., pyproject.toml)
+
+- This project uses `uv` for dependency management and follows `pyproject.toml` structure.
+- No `setup.py` or `requirements.txt` files should be used.
+- Formatters: use `black`, `ruff`, and `mypy` if applicable.
+- Python version should be pinned to `>=3.12`.
+
+---
+
+## General Notes
+
+- Markdown files should be used for documentation only.
+- Hidden Apple files (`._*`) should be ignored by all tools.
+- Follow modular structure: VHDL lives in its own folder, Python in its own.
+- All top-level folders should be treated as **language islands** with distinct build/tooling assumptions.
+
