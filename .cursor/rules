@@ -3,6 +3,12 @@
 These rules apply to the corresponding folders and file types in this repo. They are designed to optimize Cursor's language modeling, suggestion accuracy, and toolchain compatibility.
 
 ---
+## ./docs/
+- This folder contains an obsidian vault full of useful notes related to the project. 
+## ./docs/datasheets
+- This folder contains datasheets from vendors, specifcally:
+* Datasheet for the Moku-Go 
+* Datasheet for various Riscure FI probes
 
 ## ./moku-dev-vhdl/
 
