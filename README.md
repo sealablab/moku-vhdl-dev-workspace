@@ -2,7 +2,15 @@
 Top level developer workspace - simplify your Moku-Go VHDL lifestyle
 
 Getting started.
-``` git clone git@github.com:sealablab/moku-vhdl-dev-workspace.git```
+``` bash 
+git clone git@github.com:sealablab/moku-vhdl-dev-workspace.git
+cd moku-vhdl-dev-workspace
+git submodule init
+git submodule update --recursive
+```
+
+# `.cursorrules` 
+The included [.cursorrules]() file is intended to make extensive use of the latest [cursor project rules](https://docs.cursor.com/en/context/rules)
 
 # Submodules
 
