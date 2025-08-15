@@ -1,1 +1,7 @@
-{}
+{
+  "alwaysUpdateLinks": true,
+  "trashOption": "local",
+  "promptDelete": false,
+  "newFileLocation": "current",
+  "newLinkFormat": "absolute"
+}
