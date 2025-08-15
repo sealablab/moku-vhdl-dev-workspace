@@ -1,7 +1,7 @@
 
-# Slot2-ProbeDriver
+# Slot2-ProbeDriver-spec
 
-The following document describes the shared design of all Slot2-ProbeDrivers. (The DS1120A-Driver being the first).
+The following document describes the shared design of all Slot2-ProbeDrivers. 
 
 ## Probe-Inputs:
 All probe drivers will have the following (syncronous) inputs connected:
