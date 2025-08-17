@@ -49,6 +49,26 @@ These rules apply to the corresponding folders and file types in this repo. They
 
 ---
 
+## ./moku-examples/
+
+- This folder contains **reference implementations** from the official Moku examples repository.
+- **VHDL Examples**: Use as templates for common patterns, IP cores, and best practices.
+  - Basic examples: Clock dividers, DIO, DSP blocks, arithmetic units
+  - Moderate examples: Moving averagers, dividers, voltage limiters
+  - Advanced examples: Boxcar averagers, event counters, servo controllers
+  - IP Core templates: FFT, FIR filters, CORDIC, sine generators
+- **Python API Examples**: Reference for Moku device programming patterns.
+  - Use as templates for device communication, data acquisition, and signal processing
+  - Examples cover: Arbitrary wave generation, lock-in amplifiers, frequency response analysis
+  - Follow the established patterns for device initialization and configuration
+- **Best Practices**: 
+  - Study the modular structure and naming conventions
+  - Reference the testbench patterns and verification approaches
+  - Use the IP core templates as starting points for custom implementations
+- **Note**: These are reference implementations - adapt to your specific requirements rather than copying directly.
+
+---
+
 ## ./scripts/
 
 - Contains CLI and utility Python scripts.
