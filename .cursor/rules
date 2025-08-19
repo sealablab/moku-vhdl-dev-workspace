@@ -6,23 +6,38 @@ These rules apply to the corresponding folders and file types in this repo. They
 ## ./docs/
 - This folder contains an obsidian vault full of useful notes related to the project. 
 ## ./docs/datasheets
-- This folder contains datasheets from vendors, specifcally:
+- This folder contains datasheets from vendors, specifically:
 * Datasheet for the Moku-Go 
 * Datasheet for various Riscure FI probes
 
 ## ./moku-dev-vhdl/
 
-- This folder contains **only** synthesizable **VHDL-2008** source files and documentation in Markdown.
-- Use **GHDL** for simulation and **Vivado 2022.2** for synthesis via **Moku Cloud Compiler (MCC)**.
-- Use `.vhd` file extension only — never `.vhdl`.
-- Do **not** define the `CustomWrapper` entity in any top-level module — MCC provides it.
-- Entity and architecture names should match file names (PascalCase).
-- Ports and signals should use `snake_case`.
-- Inline comments should be used to close control structures (e.g., `-- end if  -- rising_edge(clk)`).
-- Use constants and enumerated types where appropriate instead of magic numbers.
-- No generics should be defined in top-level modules unless explicitly required for synthesis.
-- Top-level modules should always be called `Top.vhd` or `Top.vhdl` if referring to reference modules.
-- Testbenches must print `"ALL TESTS PASSED"` or `"SIMULATION DONE"` to signal success.
+- This folder is a **Git submodule** containing **synthesizable VHDL-2008** source files, documentation, build systems, and build artifacts.
+- **VHDL Files**: Use `.vhd` extension only — never `.vhdl`.
+- **Build Systems**: Makefiles, build artifacts, and work libraries are **expected and supported**.
+- **Top-Level Modules**: Can be named `*_Top.vhd` (e.g., `BasicBlock_Top.vhd`, `SigGen_Top.vhd`).
+- **Entity and Architecture**: Names should match file names (PascalCase).
+- **Ports and Signals**: Use `snake_case`.
+- **Build Tools**: Use **GHDL** for simulation and **Vivado 2022.2** for synthesis via **Moku Cloud Compiler (MCC)**.
+- **Testbenches**: Must print `"ALL TESTS PASSED"` or `"SIMULATION DONE"` to signal success.
+- **Build Artifacts**: `.o` files, work libraries (work-obj08.cf), and build artifacts are normal and expected.
+- **Submodule Structure**: Each module (BasicBlock, SigGen, ProbeDriver, etc.) has its own build system and Makefile.
+- **Module Consolidation**: BasicBlock and SigGen modules have been consolidated here from the root workspace.
+
+### Build System Integration
+
+- **Makefiles**: Expected in submodule directories for VHDL compilation and testing
+- **GHDL Work Libraries**: Normal build artifacts, should not be deleted during development
+- **Submodule Builds**: Each submodule can have its own build system and dependencies
+- **Cross-Platform**: Build systems should work on both macOS and Linux
+- **Compilation**: Use `make` commands within each submodule directory for building
+
+### Module Architecture
+
+- **BasicBlock**: LED pattern generation with modular 3-tier design (common/core/wrapper)
+- **SigGen**: Signal generation with refactored, modular architecture
+- **ProbeDriver**: Fault injection probe driver system
+- **Other Modules**: Follow similar modular patterns where applicable
 
 ---
 
@@ -37,7 +52,7 @@ These rules apply to the corresponding folders and file types in this repo. They
 - Prefer:
   - Explicit types (`str`, `int`, `datetime`, etc.) over `Union` or `Optional` unless necessary.
   - `constr`, `conint`, etc. from `pydantic` for constrained types.
-  - Custom validators only when builtin types won’t suffice.
+  - Custom validators only when builtin types won't suffice.
 - Use `pyproject.toml` and `uv` to manage dependencies — not `requirements.txt`.
 
 ---
@@ -91,6 +106,8 @@ These rules apply to the corresponding folders and file types in this repo. They
 
 - Markdown files should be used for documentation only.
 - Hidden Apple files (`._*`) should be ignored by all tools.
-- Follow modular structure: VHDL lives in its own folder, Python in its own.
+- Follow modular structure: VHDL lives in its own submodule, Python in its own.
 - All top-level folders should be treated as **language islands** with distinct build/tooling assumptions.
+- **Git Submodules**: The workspace uses git submodules for major components - respect their structure and build systems.
+- **Build Artifacts**: Compiled objects, work libraries, and build artifacts are normal and should not be treated as "unwanted files".
 
