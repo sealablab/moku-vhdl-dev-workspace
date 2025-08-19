@@ -61,11 +61,6 @@ The setup script handles all the complexity of:
 - **Documentation**: Extensive docs help AI understand your goals
 - **Testbenches**: AI can help with verification and testing
 
-### **Development Workflow**
-- **Submodule management**: AI can help with dependency updates
-- **Build automation**: Scripts for common development tasks
-- **Testing framework**: Integrated testbenches for validation
-
 
 ```
 
