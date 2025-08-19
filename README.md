@@ -20,14 +20,11 @@ moku-vhdl-dev-workspace/
 ```bash
 git clone --recursive git@github.com:sealablab/moku-vhdl-dev-workspace.git
 cd moku-vhdl-dev-workspace
-```
-
-### 2. Run the Setup Script
-```bash
 ./runme.sh
 ```
 
-**That's it!** The script will automatically:
+
+`runme.sh` will automatically:
 - Initialize and update all git submodules
 - Configure sparse-checkout for moku-examples (VHDL + Python only)
 - Verify the setup and show you what's available
@@ -37,10 +34,6 @@ cd moku-vhdl-dev-workspace
 The setup script handles all the complexity of:
 - **Git submodule management**: Clones and updates all dependencies
 - **Sparse-checkout configuration**: Ensures only VHDL and Python examples are included
-- **Automatic cleanup**: Removes unwanted files (images, PDFs, Verilog dirs) automatically
-- **Workspace validation**: Checks that everything is set up correctly
-- **Smart detection**: Only reconfigures what's needed
-- **Ready-to-use workspace**: Delivers a clean, focused development environment
 
 ## 🎯 What You Get Out of the Box
 
@@ -73,74 +66,7 @@ The setup script handles all the complexity of:
 - **Build automation**: Scripts for common development tasks
 - **Testing framework**: Integrated testbenches for validation
 
-## 🔧 Development Workflow
 
-### **1. Design Your VHDL Module**
-```bash
-# Start with a template
-cp moku-dev-vhdl/Template/Top.vhd my_new_module.vhd
-
-# Let Cursor AI help you implement the logic
-# "Help me implement a 16-bit counter with enable signal"
-```
-
-### **2. Test Your Design**
-```bash
-# Create a testbench
-# Let Cursor AI help you write test cases
-# "Help me create test vectors for this counter"
-```
-
-## 🛠️ Available Tools
-
-### **Automation Scripts**
-- **`runme.sh`**: All-in-one setup, update, and maintenance script
-- **`scripts/cleanup_examples.py`**: Automatically run by runme.sh (no manual action needed)
-
-### **Build & Simulation**
-- **GHDL**: Open-source VHDL simulator
-- **Makefiles**: Automated build processes
-- **Testbenches**: Comprehensive verification
-
-## 🔍 Troubleshooting
-
-### **Submodule Issues**
-```bash
-# Use the automated script (recommended)
-./runme.sh --update
-
-# Manual submodule management (if needed)
-git submodule update --init --recursive
-
-# Full reset and setup
-./runme.sh
-```
-
-## 🔄 Maintenance & Updates
-
-### **One Command Does Everything**
-```bash
-# Update all submodules and maintain clean workspace
-./runme.sh --update
-
-# Re-run full setup if needed
-./runme.sh
-```
-
-### **What Each Command Does**
-- **`./runme.sh`** (no args): Initial setup + automatic cleanup
-- **`./runme.sh --update`**: Updates all submodules + automatic cleanup
-- **`./runme.sh --help`**: Shows all available options
-
-**Note**: Cleanup runs automatically during setup and updates, so you always have a clean workspace!
-
-### **Build Problems**
-```bash
-# Clean and rebuild
-make clean && make
-
-# Check GHDL installation
-ghdl --version
 ```
 
 
