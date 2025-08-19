@@ -1,74 +1,174 @@
-# [moku-vhdl-dev-workspace](https://github.com/sealablab/moku-vhdl-dev-workspace)
-Top level developer workspace - simplify your Moku-Go VHDL lifestyle
+# ProbeDriver - VHDL Fault Injection Laser System Controller
 
-Getting started.
-``` bash 
-git clone git@github.com:sealablab/moku-vhdl-dev-workspace.git
-cd moku-vhdl-dev-workspace
-git submodule init
-git submodule update --recursive
+## Overview
+
+The ProbeDriver is a VHDL-based controller for fault injection laser systems, designed to provide precise control over laser pulse timing, intensity, and safety features. It implements a state machine that manages the complete firing sequence with configurable parameters and automatic safety modes.
+
+## Key Features
+
+- **7-bit intensity control** with lookup table mapping
+- **16-bit pulse duration** control (1-65535 clock cycles)
+- **16-bit cooldown period** management
+- **ZeroInit mode** for automatic demonstration and testing
+- **Status register** for real-time monitoring
+- **Safety interlocks** and minimum timing enforcement
+- **Clean control register interface** with proper bit mapping
+
+## Architecture
+
+### Core Components
+
+- **`ProbeDriver.vhd`** - Main state machine and control logic
+- **`IntensityLut.vhd`** - Intensity lookup table package
+- **`ProbeConfig.vhd`** - Configuration constants and timing parameters
+- **`CustomWrapper.vhd`** - Interface wrapper for system integration
+
+### Top-Level Interfaces
+
+- **`top_probe_driver.vhd`** - Official interface with improved control register layout
+- **`old/top_probe_driver_legacy.vhd`** - Legacy backward compatible interface (archived)
+
+## Control Register Interface
+
+### Control0 Register (32-bit)
+```
+CR0[31]:    Global Enable/Reset (1=Enable, 0=Reset)
+CR0[23]:    Soft Trigger Input
+CR0[22:16]: 7-bit Intensity Index (0-127)
+CR0[15:0]:  16-bit Pulse Duration (1-65535)
 ```
 
-# [.cursor/rules](https://github.com/sealablab/moku-vhdl-dev-workspace/blob/main/.cursor/rules)
-The `.cursor/rules` file is intended to make extensive use of the latest [cursor project rules](https://docs.cursor.com/en/context/rules). 
-This allows you to keep the context window tight, and focus cursor on language specific goals
+### Control1 Register (32-bit)
+```
+CR1[31:16]: 16-bit Cooldown Period (1-65535)
+CR1[15:0]:  Reserved for future use
+```
 
-# Submodules
+### Signal Mapping
+- **Reset**: `Control0[31]` (active low)
+- **Enable**: `Control0[31]` (active high)
+- **Trigger**: `Control0[23]` (rising edge)
+- **Intensity**: `Control0[22:16]` (7-bit index)
+- **Duration**: `Control0[15:0]` (16-bit value)
+- **Cooldown**: `Control1[31:16]` (16-bit value)
 
-All submodules are configured to track their `main` branch by default. When updating submodules, they will automatically use the latest main branch.
+## State Machine
 
-## Quick Submodule Updates
+The ProbeDriver operates through five main states:
 
-To update all submodules to their latest main branch:
+1. **IDLE** - Waiting for enable signal or auto-advance in zeroinit mode
+2. **ARMED** - Ready for trigger, initializing pulse counter
+3. **FIRING** - Actively firing laser with duration control
+4. **FIRED** - Pulse completed, transitioning to cooldown
+5. **COOL_DOWN** - Safety cooldown period before next cycle
 
+## ZeroInit Mode
+
+ZeroInit mode automatically executes a demonstration cycle when all control registers are set to zero (default state). This feature:
+
+- **Automatically detects** when all registers are 0x00
+- **Uses safe default values** for timing and intensity
+- **Executes one complete cycle** automatically
+- **Clears itself** after triggering to prevent loops
+- **Perfect for testing** and initial hardware validation
+
+### ZeroInit Default Values
+- **Intensity**: 0 (safe minimum)
+- **Pulse Duration**: `PulseMinDuration` constant
+- **Cooldown**: `ProbeCoolDownMin` constant
+
+## Status Register
+
+The status register provides real-time feedback on the current state:
+
+```
+Status[0]: ARMED state active
+Status[1]: FIRING state active  
+Status[2]: FIRED state active
+Status[3]: COOL_DOWN state active
+Status[4-31]: Reserved for future use
+```
+
+## Timing Parameters
+
+### Minimum Values (enforced by hardware)
+- **Pulse Duration**: 1 clock cycle minimum
+- **Cooldown Period**: 1 clock cycle minimum
+- **Intensity Index**: 0-127 (7-bit range)
+
+### Clock Requirements
+- **System Clock**: Configurable frequency
+- **Timing Resolution**: 1 clock cycle precision
+- **Maximum Duration**: 65,535 clock cycles
+
+## Usage Examples
+
+### Basic Operation
+1. Set `Control0[31]` to 1 (Enable)
+2. Configure `Control0[22:16]` with desired intensity (0-127)
+3. Set `Control0[15:0]` with pulse duration (1-65535)
+4. Configure `Control1[31:16]` with cooldown period (1-65535)
+5. Pulse `Control0[23]` to trigger firing sequence
+
+### ZeroInit Testing
+1. Reset all control registers to 0x00
+2. Enable the system (`Control0[31] = 1`)
+3. System automatically executes one safe cycle
+4. Monitor status register for state transitions
+
+## Building and Testing
+
+### Prerequisites
+- GHDL VHDL compiler/simulator
+- Make utility
+
+### Build Commands
 ```bash
-# Option 1: Use the convenience script
-./scripts/update-submodules.sh
+# Build all components
+make
 
-# Option 2: Manual update
-git submodule update --remote --merge
-git submodule foreach 'git checkout main && git pull origin main'
+# Run unit tests
+make test_unit
+
+# Run integration tests  
+make test_integration
+
+# Clean build artifacts
+make clean
 ```
 
-## [pydantic-moku-models](https://github.com/sealablab/pydantic-moku-models) 
-**02-pydantic-moku-models**: All data structures that are exposed for consumption to other services can and should have a clearly defined pydantic model. For example
-``` python
-from pydantic import BaseModel, field
+### Testbench Structure
+- **`probe_driver_tb.vhd`** - Unit tests for core ProbeDriver
+- **`top_probe_driver_improved_tb.vhd`** - Integration tests for top-level interface
 
-class MokuDeviceConfig(BaseModel):
-	name: str = Field(..., description="e.g. Lilo, Stitch")
-	ip_address: str = Field(..., description="IP address of moku device")
-	tcp_port: int = Field(27183, description="(TCP)Port:")
-	serial_num: int = Field(22314)
+## Safety Features
 
-```
+- **Minimum timing enforcement** prevents unsafe short pulses
+- **Cooldown protection** ensures proper thermal management
+- **Intensity limits** prevent excessive laser power
+- **State validation** ensures proper sequence execution
+- **Reset protection** clears all states safely
 
-## [Moku-Dev-VHDL](https://github.com/sealablab/moku-dev-vhdl)
-**10-Moku-Dev**: This is a repo with the following structure.
-Dependencies: None
-__Note__: Limit this repo to VHDL for now. Smaller context window. Simpler cursor rules.
-(VHDL-2008)
+## Future Enhancements
 
-``` bash
-./10-Moku-Dev-VHDL/
-│   ./Blinkers/blink_b.vhd
-│   ./Blinkers/blink_g.vhd
-│   ./Blinkers/Top_blink_b.vhd
-│   ./Blinkers/
-```
+The design includes reserved bits in `Control1[15:0]` for future features:
+- Advanced timing modes
+- Burst firing capabilities
+- External trigger synchronization
+- Power management controls
+- Diagnostic and calibration features
 
-## 4) [Moku-bsl](https://github.com/sealablab/moku-bsl)
-#### Dependencies: `pydantic-moku-models`
-**moku-bsl** loads bitstreams (usually in multi-instrument mode) onto a moku device over the network.
-> [!NOTE]  You will need to ByOB (bring your own bitstream)
+## Documentation
 
-``` shell
-./moku-bsl/
-./moku-bsl/__init__.py
-./moku-bsl/cli.py
-./moku-bsl/device.py
-```
-**moku-bsl** is based on my previous worth with the [moku-go](https://github.com/sealablab/Moku-Go) module
+For detailed technical information, see the `old/` directory containing:
+- Detailed register specifications
+- Troubleshooting guides
+- Organization documentation
+- Historical development notes
+
+## License
+
+This project is licensed under the terms specified in the LICENSE file.
 
 
 
