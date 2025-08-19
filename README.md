@@ -1,196 +1,225 @@
-# Moku VHDL Development Project
+# 🚀 Moku VHDL Development Workspace
 
-## Overview
+> **Your one-stop shop for Moku platform VHDL development with Cursor AI assistance!**
 
-This repository contains VHDL implementations for various Moku platform modules, including probe drivers, slot blinkers, and other custom functionality designed for fault injection and signal analysis applications.
+This workspace is designed to be the ultimate starting point for Moku platform VHDL development. Clone it once, get everything you need, and let Cursor AI help you build amazing fault injection and signal analysis tools.
 
-**For comprehensive project information, see [`docs/overview/PROJECT_OVERVIEW.md`](docs/overview/PROJECT_OVERVIEW.md)**
+## ✨ What Makes This Workspace Special?
 
-## Quick Start
+- **🎯 Complete Development Stack**: VHDL modules, Python APIs, and build tools all in one place
+- **🤖 Cursor AI Optimized**: Structured for maximum AI assistance and code generation
+- **🔧 Production-Ready Modules**: Battle-tested VHDL implementations you can use immediately
+- **📚 Rich Examples**: Real-world examples and templates to learn from
+- **🚀 Quick Start**: Get up and running in minutes, not hours
 
-The **ProbeDriver** is our most complete and well-documented module - a VHDL-based controller for fault injection laser systems with precise control over laser pulse timing, intensity, and safety features.
+## 🏗️ Workspace Architecture
 
-## Key Features
-
-- **7-bit intensity control** with lookup table mapping
-- **16-bit pulse duration** control (1-65535 clock cycles)
-- **16-bit cooldown period** management
-- **ZeroInit mode** for automatic demonstration and testing
-- **Status register** for real-time monitoring
-- **Safety interlocks** and minimum timing enforcement
-- **Clean control register interface** with proper bit mapping
-
-## Architecture
-
-### Core Components
-
-- **`ProbeDriver.vhd`** - Main state machine and control logic
-- **`IntensityLut.vhd`** - Intensity lookup table package
-- **`ProbeConfig.vhd`** - Configuration constants and timing parameters
-- **`CustomWrapper.vhd`** - Interface wrapper for system integration
-
-### Top-Level Interfaces
-
-- **`top_probe_driver.vhd`** - Official interface with improved control register layout
-- **`old/top_probe_driver_legacy.vhd`** - Legacy backward compatible interface (archived)
-
-## Control Register Interface
-
-### Control0 Register (32-bit)
-```
-CR0[31]:    Global Enable/Reset (1=Enable, 0=Reset)
-CR0[23]:    Soft Trigger Input
-CR0[22:16]: 7-bit Intensity Index (0-127)
-CR0[15:0]:  16-bit Pulse Duration (1-65535)
-```
-
-### Control1 Register (32-bit)
-```
-CR1[31:16]: 16-bit Cooldown Period (1-65535)
-CR1[15:0]:  Reserved for future use
-```
-
-### Signal Mapping
-- **Reset**: `Control0[31]` (active low)
-- **Enable**: `Control0[31]` (active high)
-- **Trigger**: `Control0[23]` (rising edge)
-- **Intensity**: `Control0[22:16]` (7-bit index)
-- **Duration**: `Control0[15:0]` (16-bit value)
-- **Cooldown**: `Control1[31:16]` (16-bit value)
-
-## State Machine
-
-The ProbeDriver operates through five main states:
-
-1. **IDLE** - Waiting for enable signal or auto-advance in zeroinit mode
-2. **ARMED** - Ready for trigger, initializing pulse counter
-3. **FIRING** - Actively firing laser with duration control
-4. **FIRED** - Pulse completed, transitioning to cooldown
-5. **COOL_DOWN** - Safety cooldown period before next cycle
-
-## ZeroInit Mode
-
-ZeroInit mode automatically executes a demonstration cycle when all control registers are set to zero (default state). This feature:
-
-- **Automatically detects** when all registers are 0x00
-- **Uses safe default values** for timing and intensity
-- **Executes one complete cycle** automatically
-- **Clears itself** after triggering to prevent loops
-- **Perfect for testing** and initial hardware validation
-
-### ZeroInit Default Values
-- **Intensity**: 0 (safe minimum)
-- **Pulse Duration**: `PulseMinDuration` constant
-- **Cooldown**: `ProbeCoolDownMin` constant
-
-## Status Register
-
-The status register provides real-time feedback on the current state:
+This is a **meta-repository** that brings together all the tools you need for Moku development:
 
 ```
-Status[0]: ARMED state active
-Status[1]: FIRING state active  
-Status[2]: FIRED state active
-Status[3]: COOL_DOWN state active
-Status[4-31]: Reserved for future use
+moku-vhdl-dev-workspace/
+├── 📁 moku-dev-vhdl/          # Core VHDL modules and IP cores
+├── 📁 moku-bsl/               # Bitstream loader and device management
+├── 📁 pydantic-models/        # Data models for Moku device configuration
+├── 📁 moku-examples/          # Official Liquid Instruments examples
+├── 📁 docs/                   # Comprehensive documentation
+├── 📁 scripts/                # Development and automation tools
+└── 📁 testbench/              # VHDL testbenches and verification
 ```
 
-## Documentation
+## 🚀 Quick Start (3 Steps!)
 
-### **Project Documentation**
-- **📖 [Project Overview](docs/overview/PROJECT_OVERVIEW.md)** - Complete project guide and module status
-- **📋 [Requirements](docs/requirements/)** - High-level requirements and specifications
-- **🔄 [Migration](docs/migration/)** - Migration guides and progress tracking
-
-### **Module Documentation**
-- **ProbeDriver**: Complete documentation in [`/ProbeDriver/`](ProbeDriver/) directory
-- **EnhancedSlotBlinker**: Documentation in [`/EnhancedSlotBlinker/`](EnhancedSlotBlinker/) directory
-- **BestSlotBlinker**: Documentation in [`/BestSlotBlinker/`](BestSlotBlinker/) directory
-- **MokuModules**: Templates and examples in [`/MokuModules/`](MokuModules/) directory
-
-### **Documentation Philosophy**
-We keep technical documentation with the code it describes for easier maintenance during active development. High-level project documentation is organized in the [`/docs/`](docs/) directory.
-
-## Timing Parameters
-
-### Minimum Values (enforced by hardware)
-- **Pulse Duration**: 1 clock cycle minimum
-- **Cooldown Period**: 1 clock cycle minimum
-- **Intensity Index**: 0-127 (7-bit range)
-
-### Clock Requirements
-- **System Clock**: Configurable frequency
-- **Timing Resolution**: 1 clock cycle precision
-- **Maximum Duration**: 65,535 clock cycles
-
-## Usage Examples
-
-### Basic Operation
-1. Set `Control0[31]` to 1 (Enable)
-2. Configure `Control0[22:16]` with desired intensity (0-127)
-3. Set `Control0[15:0]` with pulse duration (1-65535)
-4. Configure `Control1[31:16]` with cooldown period (1-65535)
-5. Pulse `Control0[23]` to trigger firing sequence
-
-### ZeroInit Testing
-1. Reset all control registers to 0x00
-2. Enable the system (`Control0[31] = 1`)
-3. System automatically executes one safe cycle
-4. Monitor status register for state transitions
-
-## Building and Testing
-
-### Prerequisites
-- GHDL VHDL compiler/simulator
-- Make utility
-
-### Build Commands
+### 1. Clone the Workspace
 ```bash
-# Build all components
-make
-
-# Run unit tests
-make test_unit
-
-# Run integration tests  
-make test_integration
-
-# Clean build artifacts
-make clean
+git clone --recursive git@github.com:sealablab/moku-vhdl-dev-workspace.git
+cd moku-vhdl-dev-workspace
 ```
 
-### Testbench Structure
-- **`probe_driver_tb.vhd`** - Unit tests for core ProbeDriver
-- **`top_probe_driver_improved_tb.vhd`** - Integration tests for top-level interface
+### 2. Initialize Submodules
+```bash
+git submodule update --init --recursive
+```
 
-## Safety Features
+### 3. Open in Cursor and Start Coding!
+```bash
+cursor .
+```
 
-- **Minimum timing enforcement** prevents unsafe short pulses
-- **Cooldown protection** ensures proper thermal management
-- **Intensity limits** prevent excessive laser power
-- **State validation** ensures proper sequence execution
-- **Reset protection** clears all states safely
+## 🎯 What You Get Out of the Box
 
-## Future Enhancements
+### **VHDL Development (`moku-dev-vhdl/`)**
+- **ProbeDriver**: Fault injection laser controller with precise timing
+- **SlotBlinkers**: Advanced pattern generators for testing and demonstration
+- **IP Cores**: FFT, FIR filters, CORDIC, and more
+- **Templates**: Ready-to-use VHDL module templates
 
-The design includes reserved bits in `Control1[15:0]` for future features:
-- Advanced timing modes
-- Burst firing capabilities
-- External trigger synchronization
-- Power management controls
-- Diagnostic and calibration features
+### **Device Management (`moku-bsl/`)**
+- **Bitstream Loading**: Deploy your VHDL designs to Moku devices
+- **Multi-Instrument Mode**: Control multiple instruments simultaneously
+- **Network Management**: Discover and connect to Moku devices
 
-## Documentation
+### **Python Integration (`pydantic-models/`)**
+- **Type-Safe Configuration**: Pydantic models for device settings
+- **API Integration**: Structured data for Moku Python API
+- **Validation**: Automatic configuration validation and error checking
 
-For detailed technical information, see the `old/` directory containing:
-- Detailed register specifications
-- Troubleshooting guides
-- Organization documentation
-- Historical development notes
+### **Examples & Templates (`moku-examples/`)**
+- **Python APIs**: Complete examples for every Moku instrument
+- **VHDL Templates**: IP core templates and example implementations
+- **Cloud Compile**: Examples for cloud-based VHDL compilation
 
-## License
+## 🤖 Why This Workspace Loves Cursor
 
-This project is licensed under the terms specified in the LICENSE file.
+### **Perfect File Organization**
+- **Semantic grouping**: Related files are logically organized
+- **Clear naming**: Files and directories have descriptive names
+- **Consistent structure**: Predictable layout across all modules
+
+### **Rich Context for AI**
+- **Comprehensive examples**: AI can learn from real implementations
+- **Documentation**: Extensive docs help AI understand your goals
+- **Testbenches**: AI can help with verification and testing
+
+### **Development Workflow**
+- **Submodule management**: AI can help with dependency updates
+- **Build automation**: Scripts for common development tasks
+- **Testing framework**: Integrated testbenches for validation
+
+## 🔧 Development Workflow
+
+### **1. Design Your VHDL Module**
+```bash
+# Start with a template
+cp moku-dev-vhdl/Template/Top.vhd my_new_module.vhd
+
+# Let Cursor AI help you implement the logic
+# "Help me implement a 16-bit counter with enable signal"
+```
+
+### **2. Test Your Design**
+```bash
+# Create a testbench
+cp testbench/custom_top_debug_tb.vhd my_module_tb.vhd
+
+# Let Cursor AI help you write test cases
+# "Help me create test vectors for this counter"
+```
+
+### **3. Deploy to Moku**
+```bash
+# Use the bitstream loader
+python scripts/quickload.py
+
+# Or let Cursor AI help you customize the deployment
+# "Help me modify this script for my specific device"
+```
+
+## 📚 Learning Path
+
+### **Beginner** 🟢
+1. Start with `moku-examples/Basic/` VHDL examples
+2. Learn the `moku-dev-vhdl/Template/` structure
+3. Build simple modules like counters and blinkers
+
+### **Intermediate** 🟡
+1. Study `moku-dev-vhdl/Moderate/` implementations
+2. Explore the `moku-examples/mcc/` cloud compile examples
+3. Customize existing modules for your needs
+
+### **Advanced** 🔴
+1. Dive into `moku-dev-vhdl/Advanced/` complex modules
+2. Create custom IP cores using the templates
+3. Integrate multiple instruments in multi-instrument mode
+
+## 🛠️ Available Tools
+
+### **Build & Simulation**
+- **GHDL**: Open-source VHDL simulator
+- **Makefiles**: Automated build processes
+- **Testbenches**: Comprehensive verification
+
+### **Deployment**
+- **Cloud Compile**: Remote VHDL compilation
+- **Bitstream Loading**: Direct device deployment
+- **Multi-Instrument Mode**: Advanced device control
+
+### **Development**
+- **Python APIs**: Full Moku instrument control
+- **Configuration Management**: Type-safe device settings
+- **Automation Scripts**: Common development tasks
+
+## 🎯 Common Use Cases
+
+### **Fault Injection Research**
+- **ProbeDriver**: Precise laser control for fault injection
+- **Timing Control**: Sub-nanosecond precision timing
+- **Safety Features**: Built-in protection mechanisms
+
+### **Signal Analysis**
+- **FFT Processing**: Real-time frequency analysis
+- **Filtering**: Custom FIR and IIR filters
+- **Pattern Generation**: Test signal synthesis
+
+### **Educational Projects**
+- **VHDL Learning**: Progressive complexity examples
+- **Digital Design**: Real-world implementation experience
+- **System Integration**: Multi-module system design
+
+## 🔍 Troubleshooting
+
+### **Submodule Issues**
+```bash
+# If submodules aren't loading
+git submodule update --init --recursive
+
+# If you need to update submodules
+git submodule update --remote
+```
+
+### **Build Problems**
+```bash
+# Clean and rebuild
+make clean && make
+
+# Check GHDL installation
+ghdl --version
+```
+
+### **Device Connection**
+```bash
+# Check network connectivity
+ping <your-moku-ip>
+
+# Verify device discovery
+python -c "from moku.instruments import MultiInstrument; print('Moku library OK')"
+```
+
+## 🤝 Contributing
+
+This workspace is designed for collaboration! Here's how to contribute:
+
+1. **Fork the workspace** and clone your fork
+2. **Create a feature branch** for your changes
+3. **Develop with Cursor** - let AI help you code!
+4. **Test thoroughly** using the integrated testbenches
+5. **Submit a pull request** with clear documentation
+
+## 📖 Documentation
+
+- **📚 [Project Overview](docs/overview/PROJECT_OVERVIEW.md)**: Complete project guide
+- **🔧 [Module Documentation](docs/)**: Detailed technical specs
+- **📋 [Requirements](docs/requirements/)**: System requirements
+- **🔄 [Migration Guides](docs/migration/)**: Upgrade paths
+
+## 🚀 Ready to Build Something Amazing?
+
+This workspace gives you everything you need to create professional-grade VHDL modules for the Moku platform. With Cursor AI as your coding partner, you'll be building fault injection systems, signal analyzers, and custom instruments faster than ever before.
+
+**Start coding today and let your imagination run wild!** 🎉
+
+---
+
+*Built with ❤️ for the Moku development community*
 
 
 
