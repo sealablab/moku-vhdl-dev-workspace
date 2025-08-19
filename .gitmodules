@@ -6,10 +6,6 @@
 	path = moku-dev-vhdl
 	url = https://github.com/sealablab/moku-dev-vhdl
 	branch = main
-[submodule "moku-bsl"]
-	path = moku-bsl
-	url = https://github.com/sealablab/moku-bsl.git
-	branch = main
 [submodule "moku-examples"]
 	path = moku-examples
 	url = https://github.com/liquidinstruments/moku-examples.git

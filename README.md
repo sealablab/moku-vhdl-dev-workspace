@@ -19,7 +19,6 @@ This is a **meta-repository** that brings together all the tools you need for Mo
 ```
 moku-vhdl-dev-workspace/
 ├── 📁 moku-dev-vhdl/          # Core VHDL modules and IP cores
-├── 📁 moku-bsl/               # Bitstream loader and device management
 ├── 📁 pydantic-models/        # Data models for Moku device configuration
 ├── 📁 moku-examples/          # Official Liquid Instruments examples
 ├── 📁 docs/                   # Comprehensive documentation
@@ -53,10 +52,7 @@ cursor .
 - **IP Cores**: FFT, FIR filters, CORDIC, and more
 - **Templates**: Ready-to-use VHDL module templates
 
-### **Device Management (`moku-bsl/`)**
-- **Bitstream Loading**: Deploy your VHDL designs to Moku devices
-- **Multi-Instrument Mode**: Control multiple instruments simultaneously
-- **Network Management**: Discover and connect to Moku devices
+
 
 ### **Python Integration (`pydantic-models/`)**
 - **Type-Safe Configuration**: Pydantic models for device settings
