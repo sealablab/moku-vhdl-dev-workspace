@@ -54,18 +54,14 @@ def cleanup_directory(root_path: Path, dry_run: bool = True) -> tuple[List[str],
                 removed_files.append(str(item))
                 if not dry_run:
                     item.unlink()
-                    print(f"Removed file: {item}")
-                else:
-                    print(f"Would remove file: {item}")
+                # No verbose output during execution
         
         elif item.is_dir():
             if should_remove_directory(item):
                 removed_dirs.append(str(item))
                 if not dry_run:
                     shutil.rmtree(item)
-                    print(f"Removed directory: {item}")
-                else:
-                    print(f"Would remove directory: {item}")
+                # No verbose output during execution
     
     return removed_files, removed_dirs
 
@@ -86,25 +82,34 @@ def main():
         print(f"Error: {examples_path} does not exist")
         return
     
-    print(f"Cleaning up: {examples_path}")
-    print(f"Mode: {'EXECUTE' if args.execute else 'DRY RUN'}")
-    print("-" * 50)
+    # Simple, quiet output
+    if args.execute:
+        print("Cleaning up example files...")
+    else:
+        print("Checking what would be cleaned up...")
     
-    removed_files, removed_dirs = cleanup_directory(examples_path, dry_run=not args.execute)
+    try:
+        removed_files, removed_dirs = cleanup_directory(examples_path, dry_run=not args.execute)
+        
+        if args.execute:
+            # Only show summary for actual execution
+            if removed_files or removed_dirs:
+                print(f"Removed {len(removed_files)} files and {len(removed_dirs)} directories")
+            else:
+                print("No cleanup needed - workspace already clean")
+        else:
+            # Dry run shows what would be removed
+            if removed_files or removed_dirs:
+                print(f"Would remove {len(removed_files)} files and {len(removed_dirs)} directories")
+                print("Run with --execute to perform cleanup")
+            else:
+                print("No cleanup needed - workspace already clean")
+                
+    except Exception as e:
+        print(f"Error during cleanup: {e}")
+        return 1
     
-    print("-" * 50)
-    print(f"Summary:")
-    print(f"Files to remove: {len(removed_files)}")
-    print(f"Directories to remove: {len(removed_dirs)}")
-    
-    if not args.execute:
-        print(f"\nRun with --execute to actually perform the cleanup")
-        print(f"Files that would be removed:")
-        for f in removed_files:
-            print(f"  {f}")
-        print(f"\nDirectories that would be removed:")
-        for d in removed_dirs:
-            print(f"  {d}")
+    return 0
 
 if __name__ == '__main__':
-    main()
+    exit(main())
