@@ -42,7 +42,7 @@ def should_remove_directory(dir_path: Path) -> bool:
     
     return False
 
-def cleanup_directory(root_path: Path, dry_run: bool = True) -> tuple[List[str], List[str]]:
+def cleanup_directory(root_path: Path) -> tuple[List[str], List[str]]:
     """Clean up the examples directory, removing unnecessary files."""
     
     removed_files = []
@@ -52,16 +52,12 @@ def cleanup_directory(root_path: Path, dry_run: bool = True) -> tuple[List[str],
         if item.is_file():
             if should_remove_file(item):
                 removed_files.append(str(item))
-                if not dry_run:
-                    item.unlink()
-                # No verbose output during execution
+                item.unlink()
         
         elif item.is_dir():
             if should_remove_directory(item):
                 removed_dirs.append(str(item))
-                if not dry_run:
-                    shutil.rmtree(item)
-                # No verbose output during execution
+                shutil.rmtree(item)
     
     return removed_files, removed_dirs
 
@@ -70,10 +66,8 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='Clean up moku-examples directory')
-    parser.add_argument('--execute', action='store_true', 
-                       help='Actually execute the cleanup (default is dry-run)')
     parser.add_argument('--examples-dir', default='moku-examples',
-                       help='Path to moku-examples directory')
+                       help='Path to moku-examples directory (default: moku-examples from CWD)')
     
     args = parser.parse_args()
     
@@ -83,21 +77,12 @@ def main():
         return 1
     
     try:
-        removed_files, removed_dirs = cleanup_directory(examples_path, dry_run=not args.execute)
+        removed_files, removed_dirs = cleanup_directory(examples_path)
         
-        if args.execute:
-            # Only show output if something was actually removed
-            if removed_files or removed_dirs:
-                print("Cleaning up example files...")
-                print(f"Removed {len(removed_files)} files and {len(removed_dirs)} directories")
-            # Exit silently if no cleanup needed
-        else:
-            # Dry run - only show output if something would be removed
-            if removed_files or removed_dirs:
-                print("Checking what would be cleaned up...")
-                print(f"Would remove {len(removed_files)} files and {len(removed_dirs)} directories")
-                print("Run with --execute to perform cleanup")
-            # Exit silently if no cleanup needed
+        # Only show output if something was actually removed
+        if removed_files or removed_dirs:
+            print(f"Removed {len(removed_files)} files and {len(removed_dirs)} directories")
+        # Exit silently if no cleanup needed
                 
     except Exception as e:
         print(f"Error during cleanup: {e}")

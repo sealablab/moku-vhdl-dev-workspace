@@ -118,7 +118,7 @@ setup_workspace() {
     echo ""
     print_status "Running automatic cleanup to ensure clean workspace..."
     if [ -f "scripts/cleanup_examples.py" ]; then
-        python3 scripts/cleanup_examples.py --examples-dir moku-examples --execute
+        python3 scripts/cleanup_examples.py --examples-dir moku-examples
         print_success "Cleanup completed automatically"
     else
         print_warning "cleanup_examples.py not found - skipping cleanup"
@@ -175,7 +175,7 @@ update_submodules() {
     echo ""
     print_status "Running cleanup to maintain clean workspace..."
     if [ -f "scripts/cleanup_examples.py" ]; then
-        python3 scripts/cleanup_examples.py --examples-dir moku-examples --execute
+        python3 scripts/cleanup_examples.py --examples-dir moku-examples
         print_success "Cleanup completed automatically"
     fi
     
