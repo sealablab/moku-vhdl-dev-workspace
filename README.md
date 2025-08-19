@@ -14,14 +14,33 @@ moku-vhdl-dev-workspace/
 └── 📁 scripts/                # Development and automation tools
 ```
 
-## 🚀 Quick Start (3 Steps!)
+## 🚀 Quick Start (2 Steps!)
 
 ### 1. Clone the Workspace
 ```bash
 git clone --recursive git@github.com:sealablab/moku-vhdl-dev-workspace.git
 cd moku-vhdl-dev-workspace
-git submodule update --init --recursive
 ```
+
+### 2. Run the Setup Script
+```bash
+./runme.sh
+```
+
+**That's it!** The script will automatically:
+- Initialize and update all git submodules
+- Configure sparse-checkout for moku-examples (VHDL + Python only)
+- Verify the setup and show you what's available
+- Guide you through next steps
+
+### **What `runme.sh` Does**
+The setup script handles all the complexity of:
+- **Git submodule management**: Clones and updates all dependencies
+- **Sparse-checkout configuration**: Ensures only VHDL and Python examples are included
+- **Automatic cleanup**: Removes unwanted files (images, PDFs, Verilog dirs) automatically
+- **Workspace validation**: Checks that everything is set up correctly
+- **Smart detection**: Only reconfigures what's needed
+- **Ready-to-use workspace**: Delivers a clean, focused development environment
 
 ## 🎯 What You Get Out of the Box
 
@@ -74,6 +93,10 @@ cp moku-dev-vhdl/Template/Top.vhd my_new_module.vhd
 
 ## 🛠️ Available Tools
 
+### **Automation Scripts**
+- **`runme.sh`**: All-in-one setup, update, and maintenance script
+- **`scripts/cleanup_examples.py`**: Automatically run by runme.sh (no manual action needed)
+
 ### **Build & Simulation**
 - **GHDL**: Open-source VHDL simulator
 - **Makefiles**: Automated build processes
@@ -83,12 +106,33 @@ cp moku-dev-vhdl/Template/Top.vhd my_new_module.vhd
 
 ### **Submodule Issues**
 ```bash
-# If submodules aren't loading
+# Use the automated script (recommended)
+./runme.sh --update
+
+# Manual submodule management (if needed)
 git submodule update --init --recursive
 
-# If you need to update submodules
-git submodule update --remote
+# Full reset and setup
+./runme.sh
 ```
+
+## 🔄 Maintenance & Updates
+
+### **One Command Does Everything**
+```bash
+# Update all submodules and maintain clean workspace
+./runme.sh --update
+
+# Re-run full setup if needed
+./runme.sh
+```
+
+### **What Each Command Does**
+- **`./runme.sh`** (no args): Initial setup + automatic cleanup
+- **`./runme.sh --update`**: Updates all submodules + automatic cleanup
+- **`./runme.sh --help`**: Shows all available options
+
+**Note**: Cleanup runs automatically during setup and updates, so you always have a clean workspace!
 
 ### **Build Problems**
 ```bash
