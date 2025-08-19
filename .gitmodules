@@ -1,7 +1,3 @@
-[submodule "pydantic-models"]
-	path = pydantic-models
-	url = https://github.com/sealablab/pydantic-moku-models
-	branch = main
 [submodule "moku-dev-vhdl"]
 	path = moku-dev-vhdl
 	url = https://github.com/sealablab/moku-dev-vhdl
