@@ -1,8 +1,14 @@
-# ProbeDriver - VHDL Fault Injection Laser System Controller
+# Moku VHDL Development Project
 
 ## Overview
 
-The ProbeDriver is a VHDL-based controller for fault injection laser systems, designed to provide precise control over laser pulse timing, intensity, and safety features. It implements a state machine that manages the complete firing sequence with configurable parameters and automatic safety modes.
+This repository contains VHDL implementations for various Moku platform modules, including probe drivers, slot blinkers, and other custom functionality designed for fault injection and signal analysis applications.
+
+**For comprehensive project information, see [`docs/overview/PROJECT_OVERVIEW.md`](docs/overview/PROJECT_OVERVIEW.md)**
+
+## Quick Start
+
+The **ProbeDriver** is our most complete and well-documented module - a VHDL-based controller for fault injection laser systems with precise control over laser pulse timing, intensity, and safety features.
 
 ## Key Features
 
@@ -88,6 +94,22 @@ Status[2]: FIRED state active
 Status[3]: COOL_DOWN state active
 Status[4-31]: Reserved for future use
 ```
+
+## Documentation
+
+### **Project Documentation**
+- **📖 [Project Overview](docs/overview/PROJECT_OVERVIEW.md)** - Complete project guide and module status
+- **📋 [Requirements](docs/requirements/)** - High-level requirements and specifications
+- **🔄 [Migration](docs/migration/)** - Migration guides and progress tracking
+
+### **Module Documentation**
+- **ProbeDriver**: Complete documentation in [`/ProbeDriver/`](ProbeDriver/) directory
+- **EnhancedSlotBlinker**: Documentation in [`/EnhancedSlotBlinker/`](EnhancedSlotBlinker/) directory
+- **BestSlotBlinker**: Documentation in [`/BestSlotBlinker/`](BestSlotBlinker/) directory
+- **MokuModules**: Templates and examples in [`/MokuModules/`](MokuModules/) directory
+
+### **Documentation Philosophy**
+We keep technical documentation with the code it describes for easier maintenance during active development. High-level project documentation is organized in the [`/docs/`](docs/) directory.
 
 ## Timing Parameters
 
