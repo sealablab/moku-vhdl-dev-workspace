@@ -21,8 +21,7 @@ moku-vhdl-dev-workspace/
 ├── 📁 moku-dev-vhdl/          # Core VHDL modules and IP cores
 ├── 📁 moku-examples/          # Official Liquid Instruments examples
 ├── 📁 docs/                   # Comprehensive documentation
-├── 📁 scripts/                # Development and automation tools
-└── 📁 testbench/              # VHDL testbenches and verification
+└── 📁 scripts/                # Development and automation tools
 ```
 
 ## 🚀 Quick Start (3 Steps!)
@@ -91,8 +90,6 @@ cp moku-dev-vhdl/Template/Top.vhd my_new_module.vhd
 ### **2. Test Your Design**
 ```bash
 # Create a testbench
-cp testbench/custom_top_debug_tb.vhd my_module_tb.vhd
-
 # Let Cursor AI help you write test cases
 # "Help me create test vectors for this counter"
 ```
