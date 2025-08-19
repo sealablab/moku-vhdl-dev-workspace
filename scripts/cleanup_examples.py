@@ -80,30 +80,24 @@ def main():
     examples_path = Path(args.examples_dir)
     if not examples_path.exists():
         print(f"Error: {examples_path} does not exist")
-        return
-    
-    # Simple, quiet output
-    if args.execute:
-        print("Cleaning up example files...")
-    else:
-        print("Checking what would be cleaned up...")
+        return 1
     
     try:
         removed_files, removed_dirs = cleanup_directory(examples_path, dry_run=not args.execute)
         
         if args.execute:
-            # Only show summary for actual execution
+            # Only show output if something was actually removed
             if removed_files or removed_dirs:
+                print("Cleaning up example files...")
                 print(f"Removed {len(removed_files)} files and {len(removed_dirs)} directories")
-            else:
-                print("No cleanup needed - workspace already clean")
+            # Exit silently if no cleanup needed
         else:
-            # Dry run shows what would be removed
+            # Dry run - only show output if something would be removed
             if removed_files or removed_dirs:
+                print("Checking what would be cleaned up...")
                 print(f"Would remove {len(removed_files)} files and {len(removed_dirs)} directories")
                 print("Run with --execute to perform cleanup")
-            else:
-                print("No cleanup needed - workspace already clean")
+            # Exit silently if no cleanup needed
                 
     except Exception as e:
         print(f"Error during cleanup: {e}")
