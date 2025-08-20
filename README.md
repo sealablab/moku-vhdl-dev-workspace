@@ -10,9 +10,32 @@ This workspace is designed to be the ultimate starting point for Moku platform V
 moku-vhdl-dev-workspace/
 ├── 📁 moku-dev-vhdl/          # Core VHDL modules and IP cores
 ├── 📁 moku-examples/          # Official Liquid Instruments examples
+├── 📁 moku-vhdl-dev-knowledge/ # Knowledge base & Obsidian vault content
 ├── 📁 docs/                   # Moku specific documentation
 └── 📁 scripts/                # Development and automation tools
 ```
+
+## 🧠 **Knowledge Management & Obsidian Integration**
+
+This workspace now serves as a **full Obsidian vault** with integrated knowledge management:
+
+### **📚 Knowledge Base (`moku-vhdl-dev-knowledge/`)**
+- **Git Submodule**: Independent version control for knowledge content
+- **Structured Documentation**: Design decisions, component analysis, integration guides
+- **Cross-References**: Direct links to VHDL files, documentation, and examples
+- **Team Collaboration**: Shareable knowledge repository separate from implementation
+
+### **🔗 Obsidian Vault Features**
+- **Full File Access**: Link directly to any file in the workspace
+- **Knowledge Integration**: Connect design decisions to actual implementations
+- **Search & Navigation**: Obsidian can search through all linked content
+- **Graph View**: Visualize relationships between components and concepts
+
+### **🚀 Benefits**
+- **Context Preservation**: Stay in Obsidian while accessing your codebase
+- **Knowledge Evolution**: Track how design decisions evolve over time
+- **Team Onboarding**: New members can quickly understand system architecture
+- **Decision History**: Maintain institutional knowledge and rationale
 
 ## 🚀 Quick Start (2 Steps!)
 

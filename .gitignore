@@ -5,8 +5,15 @@
 .DS_Store
 **/.DS_Store
 
-./docs/.obsidian/*
+# Obsidian Vault Configuration (exclude)
+.obsidian/
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace
 
+# Obsidian Content (include)
+!obsidian-notes/
+obsidian-notes/**
 
 ## uv 
 uv.lock
