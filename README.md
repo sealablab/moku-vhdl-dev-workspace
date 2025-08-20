@@ -37,6 +37,11 @@ This workspace now serves as a **full Obsidian vault** with integrated knowledge
 - **Team Onboarding**: New members can quickly understand system architecture
 - **Decision History**: Maintain institutional knowledge and rationale
 
+### **🤝 AI Collaboration Zones**
+- **Cursor Safe Areas**: Designated collaboration zones within the knowledge base
+- **Controlled Boundaries**: AI assistance while respecting Obsidian's organizational domain
+- **Daily Notes**: Automated note creation in controlled collaboration areas
+
 ## 🚀 Quick Start (2 Steps!)
 
 ### 1. Clone the Workspace
