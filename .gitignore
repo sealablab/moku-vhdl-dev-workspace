@@ -5,13 +5,11 @@
 .DS_Store
 **/.DS_Store
 
-# Obsidian Vault Configuration (TEMPORARILY TRACKING ALL - will freeze important parts later)
-# .obsidian/
-# .obsidian/workspace.json
-# .obsidian/workspace-mobile.json
-# .obsidian/workspace
+# Obsidian trash directory (created by local trash option)
+.trash/
 
-# Exclude workspace-specific files that change constantly
+# Obsidian Vault Configuration (exclude)
+.obsidian/
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .obsidian/workspace
