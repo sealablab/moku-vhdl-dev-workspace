@@ -49,6 +49,82 @@ The setup script handles all the complexity of:
 - **VHDL Templates**: IP core templates and example implementations
 - **Cloud Compile**: Examples for cloud-based VHDL compilation
 
+## 🏛️ **Enhanced Global Requirements Architecture**
+
+### **🎯 New Standard: Three Register Types with Equal Treatment**
+
+We've established a **comprehensive VHDL architecture standard** that ensures all modules follow consistent design principles and maintain Verilog portability.
+
+#### **📋 Three Register Types (All Equal Priority)**
+
+| Register Type | Purpose | Characteristics | Implementation |
+|---------------|---------|-----------------|----------------|
+| **🔄 Control** | Runtime actions | Immediate effects, runtime accessible | VHDL records with std_logic types |
+| **⚙️ Configuration** | Initialization parameters | Set during reset, stable during operation | VHDL records with std_logic_vector types |
+| **📊 Status** | Operational state | Read-only, real-time updates | VHDL records with std_logic types |
+
+#### **🏗️ Four-Layer Architecture**
+```
+┌─────────────────┐
+│      TOP        │ ← System integration & platform features
+├─────────────────┤
+│   INTERFACE     │ ← External interface & register handling
+├─────────────────┤
+│      CORE       │ ← Pure algorithmic logic
+├─────────────────┤
+│     COMMON      │ ← Shared types, constants & utilities
+└─────────────────┘
+```
+
+#### **🔑 Key Design Principles**
+- **Equal Treatment**: All three register types receive equal documentation, implementation effort, and testing coverage
+- **VHDL Records**: All register definitions use VHDL records for better organization and type safety
+- **Verilog Portability**: Prefer std_logic types to minimize future conversion issues
+- **Layered Separation**: Clear boundaries between layers with no cross-dependencies
+- **Status Visibility**: Operational state is clearly visible and accessible through dedicated status registers
+
+#### **📚 Documentation & Compliance**
+- **Comprehensive Requirements**: Complete specification in `rework-try2/Global-Reqs/`
+- **Validation Checklists**: Built-in compliance verification for all modules
+- **Equal Implementation**: Mandates equal effort for all register types
+- **Professional Standards**: Production-ready VHDL architecture guidelines
+
+### **🚀 Benefits of the New Architecture**
+- **Consistency**: All modules follow the same pattern
+- **Maintainability**: Clear separation of concerns
+- **Testability**: Core logic can be tested independently
+- **Portability**: Better Verilog conversion path
+- **Status Management**: Complete operational state visibility
+- **Professional Quality**: Enterprise-grade VHDL standards
+
+## 🔄 **Current Refactoring Status**
+
+### **✅ Completed Work**
+- **Enhanced Global Requirements**: Comprehensive architecture standards established
+- **Equal Register Treatment**: StatusRegisters now have equal visibility and documentation
+- **VHDL Records Mandate**: All register definitions must use VHDL records
+- **Verilog Portability**: Prefer std_logic types for better conversion path
+- **Four-Layer Architecture**: Clear separation of concerns defined
+
+### **🚧 In Progress**
+- **BasicBlock Refactoring**: Converting to new architecture (in `rework-try2/`)
+- **ProbeDriver Refactoring**: Adapting existing production-ready module
+- **SigGen Refactoring**: Updating signal generator to new standards
+
+### **📋 Next Steps**
+1. **Complete Module Migration**: Finish refactoring all three target modules
+2. **Validation Testing**: Ensure all modules compile and meet new standards
+3. **Documentation Updates**: Update individual module documentation
+4. **Template Creation**: Generate reusable templates for new modules
+5. **Training Materials**: Create guides for developers using the new architecture
+
+### **🎯 Refactoring Goals**
+- **Zero Compilation Errors**: All modules must compile with GHDL
+- **Equal Register Implementation**: All three register types fully implemented
+- **Layered Architecture**: Proper separation of concerns
+- **Status Visibility**: Complete operational state tracking
+- **Professional Quality**: Enterprise-grade VHDL standards
+
 ## 🤖 Why This Workspace Loves Cursor
 
 ### **Perfect File Organization**
