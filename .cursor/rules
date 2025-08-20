@@ -14,6 +14,10 @@ These rules apply to the corresponding folders and file types in this repo. They
   - File structure, naming, and organization within `Top/` is Obsidian's domain
   - Let the organization settle over time based on actual usage patterns
   - No rigid folder structure requirements - flexibility is key
+- **Cursor Safe Zone**: `Top/DNs/` directory is designated as **Cursor Safe** for collaboration
+  - Cursor can read/write daily notes in the `DNs/` subdirectory
+  - This establishes a controlled collaboration area within Obsidian's domain
+  - See `Top/Obsidian-Top.md` for detailed boundaries and collaboration rules
 - **Content Types**:
   - Project documentation, requirements, and design decisions
   - Vendor datasheets and component specifications
@@ -39,6 +43,7 @@ These rules apply to the corresponding folders and file types in this repo. They
 - **Obsidian-Driven**: Trust Obsidian's organizational capabilities
 - **Team Knowledge**: Preserve important decisions and strategic planning
 - **Living Documentation**: Content evolves with the project
+- **Collaboration Zones**: Establish controlled areas for Cursor collaboration while respecting Obsidian's domain
 
 ## ./moku-dev-vhdl/
 
