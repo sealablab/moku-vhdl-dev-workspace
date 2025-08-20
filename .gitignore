@@ -11,6 +11,11 @@
 # .obsidian/workspace-mobile.json
 # .obsidian/workspace
 
+# Exclude workspace-specific files that change constantly
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace
+
 # Obsidian Content (include)
 !obsidian-notes/
 obsidian-notes/**
