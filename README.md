@@ -41,7 +41,7 @@ This workspace now serves as a **full Obsidian vault** with integrated knowledge
 
 ### 1. Clone the Workspace
 ```bash
-git clone --recursive git@github.com:sealablab/moku-vhdl-dev-workspace.git
+git clone --recurse-submodules --depth 1 git@github.com:sealablab/moku-vhdl-dev-workspace.git
 cd moku-vhdl-dev-workspace
 ./runme.sh
 ```
@@ -78,7 +78,7 @@ git commit -m "Update submodules to latest commits"
 
 **Why This Happens**: Submodule references can become outdated when remote repositories are updated, force-pushed, or when commits are rewritten. This is common in active development repositories.
 
-**Pro Tip**: If you're setting up a fresh workspace, using `--recursive` during the initial clone usually prevents these issues.
+**Pro Tip**: For the most reliable setup, use `git clone --recurse-submodules --depth 1` which creates a shallow clone with properly initialized submodules. This avoids most submodule corruption issues.
 
 ## 🎯 What You Get Out of the Box
 
