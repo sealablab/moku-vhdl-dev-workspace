@@ -3,12 +3,42 @@
 These rules apply to the corresponding folders and file types in this repo. They are designed to optimize Cursor's language modeling, suggestion accuracy, and toolchain compatibility.
 
 ---
-## ./docs/
-- This folder contains an obsidian vault full of useful notes related to the project. 
-## ./docs/datasheets
-- This folder contains datasheets from vendors, specifically:
-* Datasheet for the Moku-Go 
-* Datasheet for various Riscure FI probes
+## ./moku-vhdl-dev-knowledge/
+
+- This folder is a **Git submodule** containing the **Obsidian knowledge base vault** for the project.
+- **Structure**: 
+  - `Top/` directory serves as the **functional Obsidian vault root** for all knowledge management
+  - All content lives under `Top/` for organizational clarity
+  - External linking to files anywhere in the structure is supported and encouraged
+- **Organization Agreement**: **Obsidian (and you) have full control** over how files are organized under `Top/`
+  - File structure, naming, and organization within `Top/` is Obsidian's domain
+  - Let the organization settle over time based on actual usage patterns
+  - No rigid folder structure requirements - flexibility is key
+- **Content Types**:
+  - Project documentation, requirements, and design decisions
+  - Vendor datasheets and component specifications
+  - Research notes and technical findings
+  - Strategic planning documents (e.g., TODO-fork-upstream-examples.md)
+  - Historical documentation and project archives
+- **Git Management**: 
+  - `Top/` directory is excluded from git tracking (contains Obsidian working files)
+  - Core configuration and important documentation are version controlled
+  - Personal workspace preferences and auto-organized content stay local
+
+### Obsidian Vault Configuration
+
+- **Vault Root**: `moku-vhdl-dev-knowledge/Top/` is the functional top level
+- **Configuration**: Core Obsidian settings tracked in main workspace `.obsidian/`
+- **Trash Location**: `.trash/` created in main workspace root (Obsidian limitation)
+- **Sync**: Obsidian sync working well with unified structure
+- **Documentation**: See `Top/README-obsidian.md` for detailed configuration notes
+
+### Knowledge Base Philosophy
+
+- **Flexible Evolution**: Let organization emerge from actual usage
+- **Obsidian-Driven**: Trust Obsidian's organizational capabilities
+- **Team Knowledge**: Preserve important decisions and strategic planning
+- **Living Documentation**: Content evolves with the project
 
 ## ./moku-dev-vhdl/
 
@@ -163,10 +193,12 @@ These rules apply to the corresponding folders and file types in this repo. They
 
 - Markdown files should be used for documentation only.
 - Hidden Apple files (`._*`) should be ignored by all tools.
-- Follow modular structure: VHDL lives in its own submodule, Python in its own.
+- Follow modular structure: VHDL lives in its own submodule, Python in its own, Knowledge base in its own.
 - All top-level folders should be treated as **language islands** with distinct build/tooling assumptions.
 - **Git Submodules**: The workspace uses git submodules for major components - respect their structure and build systems.
 - **Build Artifacts**: Compiled objects, work libraries, and build artifacts are normal and should not be treated as "unwanted files".
+- **Knowledge Base**: The `moku-vhdl-dev-knowledge/` submodule is Obsidian's domain - respect its organizational decisions.
+- **Obsidian Integration**: The main workspace serves as an Obsidian vault with the knowledge base as a tracked submodule.
 
 ---
 
