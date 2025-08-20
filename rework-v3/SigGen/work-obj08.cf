@@ -1,0 +1,17 @@
+v 4
+file . "SigGen.vhd" "e4aabd632a1f34f8733c9bfad03c124290922f40" "20250819062940.148":
+  architecture behavioural of customwrapper at 9( 321) + 0 on 20;
+file . "wrapper/siggen_wrapper.vhd" "8e888df06b11a2e68e2508e5f790e086523ebbd0" "20250819062940.044":
+  entity siggen_wrapper at 6( 202) + 0 on 17;
+  architecture rtl of siggen_wrapper at 32( 1003) + 0 on 18;
+file . "common/siggen_pkg.vhd" "2c3bf762e60b75f262142295932f2050c3a6ee31" "20250819062939.833":
+  package siggen_pkg at 6( 234) + 0 on 13 body;
+  package body siggen_pkg at 86( 4352) + 0 on 14;
+file . "common/pattern_generator_pkg.vhd" "7910c16bda6735789c1450919162a8b98cb9dc81" "20250819062939.753":
+  package pattern_generator_pkg at 6( 215) + 0 on 11 body;
+  package body pattern_generator_pkg at 56( 2977) + 0 on 12;
+file . "core/siggen_core.vhd" "a20d2eeb499c2b1bcb441835779151211e3638d2" "20250819062939.886":
+  entity siggen_core at 6( 198) + 0 on 15;
+  architecture rtl of siggen_core at 36( 1201) + 0 on 16;
+file . "../MokuModules/CustomWrapper.vhd" "dc31f5f370e11a8af4561dd48721220df753bc1d" "20250819062940.119":
+  entity customwrapper at 5( 158) + 0 on 19;
