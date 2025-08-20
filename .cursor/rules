@@ -62,7 +62,7 @@ These rules apply to the corresponding folders and file types in this repo. They
 
 **Reference Documents:**
 - **Primary Standards**: `moku-dev-vhdl/Global-Reqs/module-naming-scheme-reqs.md`
-- **Register Requirements**: `moku-dev-vhdl/Global-Reqs/control-and-configuration-register-reqs.md`
+- **Register Requirements**: `moku-dev-vhdl/Global-Reqs/register-requirements.md`
 - **Validation Checklists**: Built-in compliance verification for all modules
 
 ## VHDL Instantiation Conventions
@@ -176,6 +176,12 @@ These rules apply to the corresponding folders and file types in this repo. They
 
 **All VHDL modules must follow the comprehensive architecture standards defined in `moku-dev-vhdl/Global-Reqs/`:**
 
+### **State Machine Implementation Standards**
+- **Use VHDL enumerated types** for all internal state machines
+- **Implement status registers** that map internal states to readable bits
+- **Follow hybrid approach**: Type safety internally, visibility externally
+- **Reference**: `moku-dev-vhdl/Global-Reqs/state-machine-requirements.md`
+
 ### **Three Register Types with Equal Treatment**
 - **🔄 Control Registers**: Runtime actions with immediate effects
 - **⚙️ Configuration Registers**: Initialization parameters set during reset
@@ -202,7 +208,7 @@ These rules apply to the corresponding folders and file types in this repo. They
 
 ### **Compliance Requirements**
 - **Reference**: `moku-dev-vhdl/Global-Reqs/module-naming-scheme-reqs.md`
-- **Register Standards**: `moku-dev-vhdl/Global-Reqs/control-and-configuration-register-reqs.md`
+- **Register Standards**: `moku-dev-vhdl/Global-Reqs/register-requirements.md`
 - **Validation**: Use built-in compliance checklists for all modules
 - **Equal Implementation**: Mandates equal effort for all register types
 
