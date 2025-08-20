@@ -45,6 +45,59 @@ show_usage() {
     echo "Note: Cleanup runs automatically during setup to ensure a clean workspace"
 }
 
+# Function to detect and resolve submodule issues
+resolve_submodule_issues() {
+    print_status "Checking for submodule reference issues..."
+    
+    # Try to update submodules and catch any reference errors
+    if ! git submodule update --init --recursive 2>&1 | grep -q "fatal: remote error: upload-pack: not our ref"; then
+        print_success "No submodule reference issues detected"
+        return 0
+    fi
+    
+    print_warning "Detected submodule reference issues - attempting automatic resolution..."
+    
+    # Option 1: Try updating with --remote first (most common fix)
+    print_status "Attempting Option 1: Update submodule references..."
+    if git submodule update --init --recursive --remote; then
+        print_success "Successfully resolved with --remote update"
+        return 0
+    fi
+    
+    # Option 2: Reset submodules to latest main branch
+    print_status "Attempting Option 2: Reset submodules to latest main..."
+    if git submodule foreach 'git checkout main && git pull origin main'; then
+        print_success "Successfully reset submodules to latest main"
+        return 0
+    fi
+    
+    # Option 3: Clean and reinitialize
+    print_status "Attempting Option 3: Clean and reinitialize submodules..."
+    git submodule deinit -f .
+    if git submodule update --init --recursive; then
+        print_success "Successfully resolved with clean reinitialization"
+        return 0
+    fi
+    
+    # Option 4: Manual cleanup (last resort)
+    print_status "Attempting Option 4: Manual cleanup..."
+    if [ -d "moku-examples" ]; then
+        rm -rf moku-examples
+    fi
+    if git submodule update --init --recursive; then
+        print_success "Successfully resolved with manual cleanup"
+        return 0
+    fi
+    
+    print_error "All automatic resolution attempts failed"
+    echo ""
+    echo "Please try the following manual steps:"
+    echo "1. git submodule update --init --recursive --remote"
+    echo "2. If that fails, manually reset each submodule to main branch"
+    echo "3. Contact the repository maintainers if issues persist"
+    exit 1
+}
+
 # Function to setup workspace
 setup_workspace() {
     print_status "Setting up Moku VHDL Development Workspace..."
@@ -58,7 +111,10 @@ setup_workspace() {
     
     echo "📁 Current workspace: $(pwd)"
     
-    # Initialize and update all submodules
+    # Check for and resolve any submodule issues first
+    resolve_submodule_issues
+    
+    # Initialize and update all submodules (should work now)
     print_status "Initializing and updating git submodules..."
     git submodule update --init --recursive
     
@@ -143,6 +199,9 @@ setup_workspace() {
 # Function to update submodules
 update_submodules() {
     print_status "Updating all submodules to latest versions..."
+    
+    # Check for and resolve any submodule issues first
+    resolve_submodule_issues
     
     # Update submodules from remote
     print_status "Fetching latest changes from remote..."

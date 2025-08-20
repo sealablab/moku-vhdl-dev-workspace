@@ -46,7 +46,6 @@ cd moku-vhdl-dev-workspace
 ./runme.sh
 ```
 
-
 `runme.sh` will automatically:
 - Initialize and update all git submodules
 - Configure sparse-checkout for moku-examples (VHDL + Python only)
@@ -57,6 +56,29 @@ cd moku-vhdl-dev-workspace
 The setup script handles all the complexity of:
 - **Git submodule management**: Clones and updates all dependencies
 - **Sparse-checkout configuration**: Ensures only VHDL and Python examples are included
+
+### **🛠️ Troubleshooting Common Issues**
+
+If you encounter git submodule errors during setup, here are the solutions in order of preference:
+
+#### **Option 1: Update Submodule References (Recommended)**
+```bash
+cd moku-vhdl-dev-workspace
+git submodule update --init --recursive --remote
+```
+
+#### **Option 2: Reset Submodules to Latest**
+```bash
+cd moku-vhdl-dev-workspace
+git submodule foreach git checkout main
+git submodule foreach git pull origin main
+git add .
+git commit -m "Update submodules to latest commits"
+```
+
+**Why This Happens**: Submodule references can become outdated when remote repositories are updated, force-pushed, or when commits are rewritten. This is common in active development repositories.
+
+**Pro Tip**: If you're setting up a fresh workspace, using `--recursive` during the initial clone usually prevents these issues.
 
 ## 🎯 What You Get Out of the Box
 
