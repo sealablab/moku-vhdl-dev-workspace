@@ -136,7 +136,7 @@ begin
         port map (
             clk_in      => Clk,
             reset       => Reset,
-            divider     => "0000" & clock_divider_sel,  -- Extend 4-bit to 16-bit
+            divider     => clock_divider_sel,  -- 4-bit divider value
             enable      => '1',                         -- Always enabled
             clk_out     => open,                        -- Not used in ProbeDriver
             clk_out_en  => probe_clk_en                 -- Clock enable for ProbeDriver
