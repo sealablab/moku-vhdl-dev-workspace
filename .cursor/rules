@@ -34,10 +34,67 @@ These rules apply to the corresponding folders and file types in this repo. They
 
 ### Module Architecture
 
-- **BasicBlock**: LED pattern generation with modular 3-tier design (common/core/wrapper)
+**All modules must follow the Enhanced Global Requirements Architecture:**
+
+- **BasicBlock**: LED pattern generation with modular 4-tier design (common/core/interface/top)
 - **SigGen**: Signal generation with refactored, modular architecture
 - **ProbeDriver**: Fault injection probe driver system
 - **Other Modules**: Follow similar modular patterns where applicable
+
+**Architecture Requirements:**
+- **Four-Layer Structure**: common → core → interface → top
+- **Equal Register Treatment**: Control, Configuration, and Status registers must receive equal attention
+- **VHDL Records**: All register definitions must use VHDL records
+- **Status Visibility**: Complete operational state tracking through dedicated status registers
+- **Verilog Portability**: Prefer std_logic types for better conversion path
+- **Professional Standards**: Enterprise-grade VHDL architecture guidelines
+
+### Compliance and Validation
+
+**All VHDL modules must pass the Enhanced Global Requirements compliance checks:**
+
+- **Equal Implementation**: All three register types must receive equal implementation effort
+- **Equal Testing**: All three register types must receive equal testing coverage
+- **Equal Documentation**: All three register types must receive equal documentation attention
+- **Record Usage**: All register definitions must use VHDL records
+- **Type Safety**: Extensive use of subtypes and records for error prevention
+- **Status Management**: Complete operational state visibility and tracking
+
+**Reference Documents:**
+- **Primary Standards**: `moku-dev-vhdl/Global-Reqs/module-naming-scheme-reqs.md`
+- **Register Requirements**: `moku-dev-vhdl/Global-Reqs/control-and-configuration-register-reqs.md`
+- **Validation Checklists**: Built-in compliance verification for all modules
+
+## VHDL Instantiation Conventions
+
+- **Direct Entity Instantiation**: Use `entity work.entity_name` instead of component declarations
+- **Component Declarations**: Only use when:
+  - Testbenches require component override behavior
+  - Multiple instantiations with different configurations
+  - Legacy compatibility requirements
+- **Port Mapping**: Always use named port mapping for clarity
+- **Generic Mapping**: Use named generic mapping when generics are present
+
+## Code Style Guidelines
+
+- Use consistent indentation (2 spaces)
+- Use descriptive signal and variable names
+- Include comprehensive comments for complex logic
+- Follow VHDL-2008 standards where possible
+
+## File Organization
+
+- Keep related modules in the same directory
+- Use consistent naming conventions for files
+- Separate core logic from wrapper logic
+- Maintain clear separation between testbench and implementation files
+
+## Testing Requirements
+
+- All modules must have corresponding testbenches
+- Testbenches should cover normal operation and edge cases
+- Use meaningful test names and descriptions
+- Ensure 100% testbench functionality is maintained during refactoring
 
 ---
 
@@ -110,4 +167,73 @@ These rules apply to the corresponding folders and file types in this repo. They
 - All top-level folders should be treated as **language islands** with distinct build/tooling assumptions.
 - **Git Submodules**: The workspace uses git submodules for major components - respect their structure and build systems.
 - **Build Artifacts**: Compiled objects, work libraries, and build artifacts are normal and should not be treated as "unwanted files".
+
+---
+
+# VHDL Development Rules and Conventions
+
+## Enhanced Global Requirements Architecture
+
+**All VHDL modules must follow the comprehensive architecture standards defined in `moku-dev-vhdl/Global-Reqs/`:**
+
+### **Three Register Types with Equal Treatment**
+- **🔄 Control Registers**: Runtime actions with immediate effects
+- **⚙️ Configuration Registers**: Initialization parameters set during reset
+- **📊 Status Registers**: Operational state information (read-only, real-time updates)
+
+**Key Requirements:**
+- **All three register types must receive equal documentation, implementation effort, and testing coverage**
+- **All register definitions must use VHDL records for better organization and type safety**
+- **Prefer std_logic types for better Verilog portability**
+- **StatusRegisters are first-class citizens with equal visibility**
+
+### **Four-Layer Architecture**
+```
+┌─────────────────┐
+│      TOP        │ ← System integration & platform features
+├─────────────────┤
+│   INTERFACE     │ ← External interface & register handling
+├─────────────────┤
+│      CORE       │ ← Pure algorithmic logic
+├─────────────────┤
+│     COMMON      │ ← Shared types, constants & utilities
+└─────────────────┘
+```
+
+### **Compliance Requirements**
+- **Reference**: `moku-dev-vhdl/Global-Reqs/module-naming-scheme-reqs.md`
+- **Register Standards**: `moku-dev-vhdl/Global-Reqs/control-and-configuration-register-reqs.md`
+- **Validation**: Use built-in compliance checklists for all modules
+- **Equal Implementation**: Mandates equal effort for all register types
+
+## VHDL Instantiation Conventions
+
+- **Direct Entity Instantiation**: Use `entity work.entity_name` instead of component declarations
+- **Component Declarations**: Only use when:
+  - Testbenches require component override behavior
+  - Multiple instantiations with different configurations
+  - Legacy compatibility requirements
+- **Port Mapping**: Always use named port mapping for clarity
+- **Generic Mapping**: Use named generic mapping when generics are present
+
+## Code Style Guidelines
+
+- Use consistent indentation (2 spaces)
+- Use descriptive signal and variable names
+- Include comprehensive comments for complex logic
+- Follow VHDL-2008 standards where possible
+
+## File Organization
+
+- Keep related modules in the same directory
+- Use consistent naming conventions for files
+- Separate core logic from wrapper logic
+- Maintain clear separation between testbench and implementation files
+
+## Testing Requirements
+
+- All modules must have corresponding testbenches
+- Testbenches should cover normal operation and edge cases
+- Use meaningful test names and descriptions
+- Ensure 100% testbench functionality is maintained during refactoring
 
