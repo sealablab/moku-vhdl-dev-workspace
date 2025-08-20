@@ -11,10 +11,14 @@
             "id": "994e175f94d43b8e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "README"
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for README"
             }
           },
           {
@@ -108,11 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from README"
             }
           },
           {
@@ -136,12 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of README"
             }
           }
         ]
@@ -162,5 +169,27 @@
     }
   },
   "active": "994e175f94d43b8e",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "moku-vhdl-dev-knowledge/N/TODO-fork-upstream-examples.md",
+    "moku-vhdl-dev-knowledge/_recent",
+    "moku-vhdl-dev-knowledge/Riscure_vendor_vault/Probes/Riscure-DS1203A HP EM SCA Probe.md",
+    "moku-vhdl-dev-knowledge/Riscure_vendor_vault",
+    "moku-vhdl-dev-knowledge/Riscure_vendor_vault/Probes/Riscure-DS1121A Bi-Directional EM FI Probe.md",
+    "moku-vhdl-dev-knowledge/Riscure_vendor_vault/Probes/Riscure-DS1120A Uni-directional EM FI probe.md",
+    "moku-vhdl-dev-knowledge/_recent/2025-08/Moku Go EMFI Wiring Diagram.md",
+    "moku-vhdl-dev-knowledge/_recent/2025-08/Lilo-Stitch-Stacked-Sketch.md",
+    "moku-vhdl-dev-knowledge/_recent/2025-08/imgs/Pasted image 20250816201645.png",
+    "moku-vhdl-dev-knowledge/_recent/2025-08/imgs/Pasted image 20250816201520.png",
+    "moku-vhdl-dev-knowledge/_recent/2025-08/imgs/Moku-Go-trimmed.png",
+    "moku-vhdl-dev-knowledge/_recent/2025-08/imgs/Moku-Go-transparent 1.png",
+    "moku-vhdl-dev-knowledge/_recent/2025-08/imgs/LiloStitchDriverMonitorPhysicalWiringExample.png",
+    "moku-vhdl-dev-knowledge/README.md",
+    "moku-vhdl-dev-knowledge/MOKU_EXAMPLES_SYNC.md",
+    "moku-vhdl-dev-knowledge/S2-ProbeDriver/S2-ProbeDriver.md",
+    "moku-vhdl-dev-knowledge/S2-ProbeDriver/S2-DS1120A-ProbeDriver.md",
+    "moku-vhdl-dev-knowledge/overview/PROJECT_OVERVIEW.md",
+    "moku-vhdl-dev-knowledge/archive/README.md",
+    "moku-vhdl-dev-knowledge/_will_be_sorted",
+    "moku-vhdl-dev-knowledge/N"
+  ]
 }
