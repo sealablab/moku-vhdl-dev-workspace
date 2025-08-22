@@ -8,3 +8,6 @@
 [submodule "moku-dev-python"]
 	path = moku-dev-python
 	url = git@github.com:sealablab/moku-dev-python.git
+[submodule "moku-examples"]
+	path = moku-examples
+	url = https://github.com/sealablab/moku-examples.git
