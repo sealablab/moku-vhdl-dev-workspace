@@ -1,3 +1,13 @@
+[submodule "moku-dev-vhdl"]
+	path = moku-dev-vhdl
+	url = https://github.com/sealablab/moku-dev-vhdl
+	branch = main
+[submodule "moku-dev-python"]
+	path = moku-dev-python
+	url = git@github.com:sealablab/moku-dev-python.git
+[submodule "moku-dev-obsd-vault"]
+	path = moku-dev-obsd-vault
+	url = https://github.com/sealablab/moku-dev-obsd-vault.git
 [submodule "moku-dev-examples"]
 	path = moku-dev-examples
 	url = https://github.com/sealablab/moku-dev-examples.git
