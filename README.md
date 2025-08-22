@@ -2,6 +2,41 @@
 
 This is a **meta-repository** that brings together all the tools you need for Moku development:
 
+## 🏷️ **Stable Release Tag - Recommended for Production Use**
+
+**For the most reliable setup with all submodules working correctly, clone at this specific tag:**
+
+```bash
+# Clone the repository at the stable tag
+git clone --recurse-submodules --depth 1 --branch v1.0.0-submodules-restored git@github.com:sealablab/moku-vhdl-dev-workspace.git
+
+# Or if you prefer HTTPS:
+git clone --recurse-submodules --depth 1 --branch v1.0.0-submodules-restored https://github.com/sealablab/moku-vhdl-dev-workspace.git
+
+cd moku-vhdl-dev-workspace
+```
+
+**What this tag guarantees:**
+- ✅ All 4 submodules successfully restored and working
+- ✅ Clean working tree with no conflicts
+- ✅ Full synchronization between local and remote repositories
+- ✅ Stable development environment ready for use
+- ✅ No submodule corruption or remote ref issues
+
+**Alternative: Clone latest main branch (may have ongoing development changes)**
+```bash
+git clone --recurse-submodules --depth 1 git@github.com:sealablab/moku-vhdl-dev-workspace.git
+cd moku-vhdl-dev-workspace
+```
+
+**Already have the repository? Switch to the stable tag:**
+```bash
+cd moku-vhdl-dev-workspace
+git fetch origin
+git checkout v1.0.0-submodules-restored
+git submodule update --init --recursive
+```
+
 ## 🏗️ Workspace Architecture
 
 ```
@@ -42,6 +77,15 @@ This workspace now serves as a **full Obsidian vault** with integrated knowledge
 ## 🚀 Quick Start (2 Steps!)
 
 ### 1. Clone the Workspace
+
+**Option A: Stable Release (Recommended)**
+```bash
+git clone --recurse-submodules --depth 1 --branch v1.0.0-submodules-restored git@github.com:sealablab/moku-vhdl-dev-workspace.git
+cd moku-vhdl-dev-workspace
+./runme.sh
+```
+
+**Option B: Latest Development Version**
 ```bash
 git clone --recurse-submodules --depth 1 git@github.com:sealablab/moku-vhdl-dev-workspace.git
 cd moku-vhdl-dev-workspace
