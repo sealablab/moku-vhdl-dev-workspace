@@ -2,14 +2,11 @@
 
 This is a **meta-repository** that brings together all the tools you need for Moku development:
 
-This workspace is designed to be the ultimate starting point for Moku platform VHDL development. Clone it once, get everything you need, and let Cursor AI help you build amazing fault injection and signal analysis tools.
-
 ## 🏗️ Workspace Architecture
 
 ```
-moku-vhdl-dev-workspace/
 ├── 📁 moku-dev-vhdl/          # Core VHDL modules and IP cores
-├── 📁 moku-examples/          # Official Liquid Instruments examples
+├── 📁 moku-examples-miniml/   # minimial fork of Liquid Instruments examples
 ├── 📁 moku-vhdl-dev-knowledge/ # Knowledge base & Obsidian vault content
 ├── 📁 docs/                   # Moku specific documentation
 └── 📁 scripts/                # Development and automation tools
