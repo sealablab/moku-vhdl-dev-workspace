@@ -5,3 +5,6 @@
 [submodule "moku-vhdl-dev-knowledge"]
 	path = moku-vhdl-dev-knowledge
 	url = git@github.com:sealablab/moku-vhdl-dev-knowledge.git
+[submodule "moku-dev-python"]
+	path = moku-dev-python
+	url = git@github.com:sealablab/moku-dev-python.git
